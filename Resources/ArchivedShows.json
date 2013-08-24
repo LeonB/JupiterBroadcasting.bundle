@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Beer is Tasty",
+        "feed": "http://feeds2.feedburner.com/jupiterbeeristasty-hd?format=xml",
+        "feed-low": "http://feeds2.feedburner.com/BeerIsTasty?format=xml",
+        "feed-audio": "http://feeds2.feedburner.com/BeerIsTasty?format=xml",
+        "image": "beeristasty.png",
+        "plot": "Finding interesting combinations of food and beer.",
+        "genre": "Technology"
+    },
+    {
+        "name": "Jupiter Files",
+        "feed": "http://feeds.feedburner.com/ldf-video?format=xml",
+        "feed-low": "http://feeds.feedburner.com/ldf-video?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/ldf-mp3?format=xml",
+        "image": "jupiterfiles.jpg",
+        "plot": "Bryan takes a peek into alien life.",
+        "genre": "Technology"
+    },
+    {
+        "name": "Jupiter@Nite",
+        "feed": "http://feeds.feedburner.com/jupiternitehd?format=xml",
+        "feed-low": "http://feeds.feedburner.com/jupiternitelargevid?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/jupiternitemp3?format=xml",
+        "image": "jupiteratnite.jpg",
+        "plot": "Jupiter Broadcasting hooliganisms covered in front of a live audience on the intertubes.",
+        "genre": "Technology"
+    },
+    {
+        "name": "LOTSO",
+        "feed": "http://feeds.feedburner.com/lotsovideo?format=xml",
+        "feed-low": "http://feeds.feedburner.com/lotsovideo?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/lotsomp3?format=xml",
+        "image": "lotso.jpg",
+        "plot": "Video games, reviews and coverage.",
+        "genre": "Technology"
+    },
+    {
+        "name": "MMOrgue",
+        "feed": "http://feeds.feedburner.com/MMOrgueHD?format=xml",
+        "feed-low": "http://feeds.feedburner.com/MMOrgueHD?format=xml",
+        "feed-audio": "http://www.jupiterbroadcasting.com/feeds/AllJupiterBroadcastingShowsOGG.xml",
+        "image": "mmorgue.jpg",
+        "plot": "The MMOrgue is a show presented by Jeremy about Massively Multiplayer Online (MMO) games.",
+        "genre": "Technology"
+    },
+    {
+        "name": "TORked",
+        "feed": "http://feeds.feedburner.com/TorkedHd?format=xml",
+        "feed-low": "http://feeds.feedburner.com/TorkedMobile?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/TorkedMp3?format=xml",
+        "image": "torked.jpg",
+        "plot": "Star Wars: The Old Republic podcast that goes in-depth into TOR updates and features on a weekly basis.",
+        "genre": "Technology"
+    }
+]
