@@ -7,6 +7,7 @@ import json
 from StringIO import StringIO
 from time import mktime
 from datetime import datetime
+import urllib2
 
 TITLE            = 'Jupiter Broadcasting'
 JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
@@ -32,7 +33,7 @@ def Start():
     # VideoClipObject.thumb = R(JB_ICON)
     # VideoClipObject.art = R(JB_ART)
 
-    # HTTP.CacheTime = CACHE_1HOUR
+    HTTP.CacheTime = CACHE_1HOUR
 
 ####################################################################################################
 # Menus
@@ -87,29 +88,33 @@ def ShowMenu(show_name):
     oc = ObjectContainer(title2=show_name, view_group='InfoList')
 
     for entry in rss.entries:
+        Log.Debug(entry)
+
         show_name = show['name']
         title = entry.title
-        summary = entry.subtitle if entry.has_key('subtitle') else 'Test'
+        summary = entry.subtitle if entry.has_key('subtitle') else None
+        thumb = entry.media_thumbnail[0]['url'] if entry.has_key('media_thumbnail') else None
         date = datetime.fromtimestamp(mktime(entry.updated_parsed))
-        # oc.add(VideoClipObject(
-        #     url = 'http://201308.jb-dl.cdn.scaleengine.net/coderradio/2013/cr-0063-432p.mp4',
-        #     title = title,
-        #     summary = summary,
-        #     thumb = 'http://www.jupiterbroadcasting.com/wp-content/uploads/2013/08/cr-0063-v.jpg',
-        #     originally_available_at = date,
-        #     # key = 1.0,
-        #     # rating_key = 2.0,
-        # ))
-        # break
+        if entry.has_key('itunes_duration'):
+            duration = Datetime.MillisecondsFromString(entry.itunes_duration)
+        else:
+            duration = None
+        try:
+            url = getFinalUrl(entry.enclosures[0]['href'])
+        except HTTPError:
+            continue
 
-        oc.add(DirectoryObject(
-            key=Callback(ShowMenu, show_name=show_name),
+        Log.Debug("url: %s" % url)
+
+        oc.add(createEpisodeObject(
+            url=url,
             title=title,
-            thumb=Resource.ContentsOfURLWithFallback(url='http://vimcasts.org/images/posters/show_invisibles.png', fallback=R('icon-default.png')),
-            # thumb=R(show['image']),
-            # art='http://vimcasts.org/images/posters/show_invisibles.png',
             summary=summary,
-            tagline='Je moeder'))
+            thumb=thumb,
+            originally_available_at=date,
+            duration=duration,
+            rating_key=title,
+            show_name=show_name))
 
     return oc
 
@@ -131,6 +136,22 @@ def activeShows():
 def resetShowsCache():
     if Data.Exists('shows'):
         Data.Remove('shows')
+
+def getFinalUrl(url):
+    redirects = Dict['redirects']
+    if not redirects:
+        redirects = {}
+
+    if url not in redirects:
+        Log.Debug("Checking redirects for %s" % url)
+        req = urllib2.Request(url)
+        req.get_method = lambda: 'HEAD'
+        res = urllib2.urlopen(req)
+        final_url = res.geturl()
+        redirects = {url: final_url}
+        Dict['redirects'] = redirects
+
+    return redirects[url]
 
 def archivedactiveShows():
     if not Data.Exists('archived_shows'):
@@ -170,3 +191,49 @@ def getShowEpisodes(show):
     #     rss = Data.LoadObject('rss')
 
     # return rss
+
+def createEpisodeObject(url, title, summary, thumb, originally_available_at, duration, rating_key, show_name, include_container=False):
+    container = Container.MP4
+    video_codec = VideoCodec.H264
+    audio_codec = AudioCodec.AAC
+    audio_channels = 2
+
+    track_object = EpisodeObject(
+        key = Callback(
+            createEpisodeObject,
+            url=url,
+            title=title,
+            summary=summary,
+            thumb=thumb,
+            originally_available_at=originally_available_at,
+            duration=duration,
+            rating_key=rating_key,
+            show_name=show_name,
+            include_container=True
+        ),
+        rating_key = url,
+        title = title,
+        summary = summary,
+        # thumb = thumb,
+        thumb=thumb,
+        originally_available_at = originally_available_at,
+        duration = duration,
+        producers = ['Jupiter Broadcasting'],
+        show = show_name,
+        items = [
+            MediaObject(
+                parts = [
+                    PartObject(key=url)
+                ],
+                container = container,
+                video_codec = video_codec,
+                audio_codec = audio_codec,
+                audio_channels = audio_channels,
+            )
+        ]
+    )
+
+    if include_container:
+        return ObjectContainer(objects=[track_object])
+    else:
+        return track_object
