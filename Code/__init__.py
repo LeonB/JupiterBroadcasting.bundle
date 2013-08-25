@@ -133,7 +133,7 @@ def ShowMenu(show_name, limit=None, offset=0):
             duration=duration,
             show_name=show_name))
 
-    if (offset+limit) < len(rss.entries):
+    if show['pagination'] == True and (offset+limit) < len(rss.entries):
         oc.add(DirectoryObject(
             key=Callback(ShowMenu, show_name=show_name, limit=limit, offset=(offset+limit)),
             title="Page %d" % (((offset+limit)/limit)+1),
