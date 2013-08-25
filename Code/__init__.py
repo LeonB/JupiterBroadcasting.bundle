@@ -15,8 +15,7 @@ TITLE            = 'Jupiter Broadcasting'
 JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
 JB_ICON          = 'icon-default.png'
 JB_ART           = 'art-default.jpg'
-
-SHOWS = {}
+LIVE_STREAM_URL  = 'http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8'
 
 ###############################################################################
 def Start():
@@ -36,6 +35,7 @@ def Start():
     # VideoClipObject.art = R(JB_ART)
 
     HTTP.CacheTime = CACHE_1HOUR
+    HTTP.Headers['User-Agent'] = 'Plex Jupiter Broadcasting Channel'
 
 ####################################################################################################
 # Menus
@@ -47,18 +47,11 @@ def MainMenu():
     # Add live stream
     title = 'The Jupiter Broadcasting Live Stream'
     oc.add(createEpisodeObject(
-        url='http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8?wowzasessionid=1946303065',
+        url=LIVE_STREAM_URL,
         title=title,
         summary=title,
         thumb=R('jupiterbroadcasting.jpg'),
         rating_key=title))
-
-    # Add recent episodes
-    oc.add(DirectoryObject(
-        key=Callback(ArchiveMenu),
-        title='Recent Episodes',
-        thumb=R('jupiterbroadcasting.jpg'),
-        summary='Recent episoded from all shows'))
 
     # Add shows
     for show in activeShows():
@@ -122,10 +115,10 @@ def ShowMenu(show_name, limit=None, offset=0):
         try:
             url = getFinalUrl(entry.enclosures[0]['href'])
         except urllib2.HTTPError as e:
-            Log.Warning("Problem with %s: %s" % (url, e.reason))
+            Log.Warn("Problem with %s: %s" % (url, e.reason))
             continue
         except socket.timeout as e:
-            Log.Warning("%s took to long to complete" % url)
+            Log.Warn("%s took to long to complete" % url)
             continue
 
         Log.Debug("url: %s" % url)
@@ -197,7 +190,7 @@ def getFinalUrl(url):
         if m:
             final_url = "http://%s" % m.group(1)
         else:
-            req = urllib2.Request(url)
+            req = urllib2.Request(url, None, HTTP.Headers)
             req.get_method = lambda: 'HEAD'
             res = urllib2.urlopen(req, timeout=3.0)
             final_url = res.geturl()
