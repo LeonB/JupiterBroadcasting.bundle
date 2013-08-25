@@ -6,7 +6,9 @@
         "feed-audio": "http://feeds2.feedburner.com/BeerIsTasty?format=xml",
         "image": "beeristasty.png",
         "plot": "Finding interesting combinations of food and beer.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Jupiter Files",
@@ -15,7 +17,9 @@
         "feed-audio": "http://feeds.feedburner.com/ldf-mp3?format=xml",
         "image": "jupiterfiles.jpg",
         "plot": "Bryan takes a peek into alien life.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Jupiter@Nite",
@@ -24,7 +28,9 @@
         "feed-audio": "http://feeds.feedburner.com/jupiternitemp3?format=xml",
         "image": "jupiteratnite.jpg",
         "plot": "Jupiter Broadcasting hooliganisms covered in front of a live audience on the intertubes.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "LOTSO",
@@ -33,7 +39,9 @@
         "feed-audio": "http://feeds.feedburner.com/lotsomp3?format=xml",
         "image": "lotso.jpg",
         "plot": "Video games, reviews and coverage.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "MMOrgue",
@@ -42,7 +50,9 @@
         "feed-audio": "http://www.jupiterbroadcasting.com/feeds/AllJupiterBroadcastingShowsOGG.xml",
         "image": "mmorgue.jpg",
         "plot": "The MMOrgue is a show presented by Jeremy about Massively Multiplayer Online (MMO) games.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "TORked",
@@ -51,6 +61,8 @@
         "feed-audio": "http://feeds.feedburner.com/TorkedMp3?format=xml",
         "image": "torked.jpg",
         "plot": "Star Wars: The Old Republic podcast that goes in-depth into TOR updates and features on a weekly basis.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     }
 ]
