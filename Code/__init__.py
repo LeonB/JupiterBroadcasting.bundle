@@ -93,18 +93,27 @@ def ArchiveMenu():
     return oc
 
 @route('/video/jupiterbroadcasting/show/{show_name}')
-def ShowMenu(show_name):
+def ShowMenu(show_name, limit=None, offset=0):
     show = getShow(show_name)
     rss = getShowEpisodes(show)
     oc = ObjectContainer(title2=show_name, view_group='InfoList')
+    offset = int(offset)
 
-    for entry in rss.entries:
+    if limit == None:
+        limit = show['limit']
+    else:
+        limit = int(limit)
+
+    Log.Debug("offset: %d" % offset)
+    Log.Debug("limit: %d" % limit)
+
+    for entry in rss.entries[offset:(offset+limit)]:
         Log.Debug(entry)
 
         show_name = show['name']
         title = entry.title
         summary = entry.subtitle if entry.has_key('subtitle') else None
-        thumb = entry.media_thumbnail[0]['url'] if entry.has_key('media_thumbnail') else None
+        thumb = entry.media_thumbnail[0]['url'] if entry.has_key('media_thumbnail') else R(show['image'])
         date = datetime.fromtimestamp(mktime(entry.updated_parsed))
         if entry.has_key('itunes_duration'):
             duration = Datetime.MillisecondsFromString(entry.itunes_duration)
@@ -130,6 +139,13 @@ def ShowMenu(show_name):
             originally_available_at=date,
             duration=duration,
             show_name=show_name))
+
+    if (offset+limit) < len(rss.entries):
+        oc.add(DirectoryObject(
+            key=Callback(ShowMenu, show_name=show_name, limit=limit, offset=(offset+limit)),
+            title="Page %d" % (((offset+limit)/limit)+1),
+            thumb=R(show['image']),
+            summary='View older episodes'))
 
     return oc
 

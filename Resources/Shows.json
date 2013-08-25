@@ -1,12 +1,25 @@
 [
     {
+        "name": "Recent Episodes",
+        "feed": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
+        "feed-low": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
+        "feed-audio": "http://feeds2.feedburner.com/AllJupiterBroadcastingShowsOgg?format=xml",
+        "image": "jupiterbroadcasting.jpg",
+        "plot": "The Linux Action Show covers the latest news in free and open source software, especially Linux.",
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": false
+    },
+    {
         "name": "Coder Radio",
         "feed": "http://feeds.feedburner.com/coderradiovideo?format=xml",
         "feed-low": "http://www.jupiterbroadcasting.com/feeds/coderradioogg.xml?format=xml",
         "feed-audio": "http://www.jupiterbroadcasting.com/feeds/coderradioogg.xml",
         "image": "coderradio.jpg",
         "plot": "A weekly talk show taking a pragmatic look at the art and business of Software Development and related technologies.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "FauxShow",
@@ -15,7 +28,9 @@
         "feed-audio": "http://www.jupiterbroadcasting.com/feeds/FauxShowMP3.xml",
         "image": "fauxshow.jpg",
         "plot": "The FauxShow is not a real show, but a social experience. Unlike most of the shows on the network, the FauxShow has no defined subject and the topic varies week to week.",
-        "genre": "Comedy"
+        "genre": "Comedy",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "In Depth Look",
@@ -24,16 +39,20 @@
         "feed-audio": "http://www.jupiterbroadcasting.com/feeds/indepthlookmp3.xml?format=xml",
         "image": "indepthlook.jpg",
         "plot": "Total focus on great topics, one episode at a time. Each week Chris present another topic, from extreme hardware builds to beginner video guides.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Linux Action Show",
-        "feed": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
-        "feed-low": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
-        "feed-audio": "http://feeds2.feedburner.com/AllJupiterBroadcastingShowsOgg?format=xml",
+        "feed": "http://feeds.feedburner.com/computeractionshowvideo",
+        "feed-low": "http://feeds.feedburner.com/linuxactionshowipodvid?format=xml",
+        "feed-audio": "http://feeds2.feedburner.com/TheLinuxActionShowOGG?format=xml",
         "image": "linuxactionshow.jpg",
         "plot": "The Linux Action Show covers the latest news in free and open source software, especially Linux.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Linux Unplugged",
@@ -42,7 +61,9 @@
         "feed-audio": "http://feeds.feedburner.com/linuxunogg?format=xml",
         "image": "linuxunplugged.jpg",
         "plot": "Cleans up after the sloppy seconds of the Linux Action Show.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Plan B",
@@ -51,7 +72,9 @@
         "feed-audio": "http://feeds.feedburner.com/planbogg?format=xml",
         "image": "planb.jpg",
         "plot": "Weekly talk show contemplating the future and present of Bitcoin. With insights for the novice, shop talk for the expert, and opinionated discussion for the interested observer of bitcoin and related technologies.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "SCIbyte",
@@ -60,7 +83,9 @@
         "feed-audio": "http://feeds.feedburner.com/scibyteaudio?format=xml",
         "image": "scibyte.jpg",
         "plot": "SciByte is a show about science topics presented by Heather and Jeremy.",
-        "genre": "Science"
+        "genre": "Science",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "TechSnap",
@@ -69,7 +94,9 @@
         "feed-audio": "http://feeds.feedburner.com/techsnapogg?format=xml",
         "image": "techsnap.jpg",
         "plot": "TechSNAP is a show about technology news hosted by Chris Fisher and Allan Jude which records live on Thursdays and is released on the following Monday.",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     },
     {
         "name": "Unfilter",
@@ -78,6 +105,8 @@
         "feed-audio": "http://www.jupiterbroadcasting.com/feeds/unfilterogg.xml",
         "image": "unfilter.jpg",
         "plot": "We're living in historic times. Don't waste it on TV. Unplug from the distractions and propaganda, and unfilter your life!",
-        "genre": "Technology"
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
     }
 ]
