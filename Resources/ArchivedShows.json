@@ -55,6 +55,17 @@
         "pagination": true
     },
     {
+        "name": "Stoked",
+        "feed": "http://feeds.feedburner.com/stokedhd?format=xml",
+        "feed-low": "http://feeds.feedburner.com/stokedipod?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/stoked-ogg?format=xml",
+        "image": "stoked.jpg",
+        "plot": "All the news about Star Trek Online you would ever need.",
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
+    },
+    {
         "name": "TORked",
         "feed": "http://feeds.feedburner.com/TorkedHd?format=xml",
         "feed-low": "http://feeds.feedburner.com/TorkedMobile?format=xml",
