@@ -14,7 +14,7 @@ Screenshot of web interface:
 
 ## Installing the development version from source on Ubuntu
 
-```
+``` shell
 mkdir /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
 git clone https://github.com/LeonB/com.plexapp.plugins.jupiterbroadcasting.git /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/Contents
 chown -R plex:plex /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
