@@ -54,7 +54,7 @@ def MainMenu():
         rating_key=title))
 
     # Add shows
-    for show in activeShows():
+    for show in getActiveShows():
         show_name = show['name']
         oc.add(DirectoryObject(
             key=Callback(ShowMenu, show_name=show_name),
@@ -75,7 +75,7 @@ def MainMenu():
 def ArchiveMenu():
     oc = ObjectContainer(title2='Archive', view_group='InfoList')
 
-    for show in archivedactiveShows():
+    for show in getArchivedShows():
         show_name = show['name']
         oc.add(DirectoryObject(
             key=Callback(ShowMenu, show_name=show_name),
@@ -144,7 +144,7 @@ def ShowMenu(show_name, limit=None, offset=0):
 
 ####################################################################################################
 
-def activeShows():
+def getActiveShows():
     if not Data.Exists('shows'):
         Log.Debug('Loading shows from disk')
         data = Resource.Load('Shows.json', binary=False)
@@ -201,7 +201,7 @@ def getFinalUrl(url):
 
     return redirects[url]
 
-def archivedactiveShows():
+def getArchivedShows():
     if not Data.Exists('archived_shows'):
         Log.Debug('Loading archived shows from disk')
         data = Resource.Load('ArchivedShows.json', binary=False)
@@ -219,13 +219,13 @@ def resetArchivedShowsCache():
         Data.Remove('archived_shows')
 
 def getShow(show_name):
-    shows = activeShows()
+    shows = getActiveShows()
     shows = filter(lambda show: show['name'] == show_name, shows)
 
     if len(shows) == 1:
         return shows[0]
 
-    archivedShows = archivedactiveShows()
+    archivedShows = getArchivedShows()
     archivedShows = filter(lambda show: show['name'] == show_name, archivedShows)
     return archivedShows[0]
 
