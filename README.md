@@ -37,6 +37,8 @@ chown -R _plex:_plex /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroad
 find /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/ -type f -exec chmod 644 {} +
 find /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/ -type d -exec chmod 755 {} +
 service plexmediaserver start
+```
+
 ## Problems ##
 
 - Live Stream doesn't work on Plex webinterface
