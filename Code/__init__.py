@@ -9,6 +9,7 @@ from time import mktime
 from datetime import datetime
 import urllib2
 import socket
+import re
 
 TITLE            = 'Jupiter Broadcasting'
 JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
@@ -175,10 +176,16 @@ def getFinalUrl(url):
 
     if url not in redirects:
         Log.Debug("Checking redirects for %s" % url)
-        req = urllib2.Request(url)
-        req.get_method = lambda: 'HEAD'
-        res = urllib2.urlopen(req)
-        final_url = res.geturl()
+
+        m = re.match('^http://www.podtrac.com/pts/redirect.mp4/(.*)$', url)
+        if m:
+            final_url = "http://%s" % m.group(1)
+        else:
+            req = urllib2.Request(url)
+            req.get_method = lambda: 'HEAD'
+            res = urllib2.urlopen(req, timeout=3.0)
+            final_url = res.geturl()
+
         redirects = {url: final_url}
         Dict['redirects'] = redirects
         Dict.Save()
