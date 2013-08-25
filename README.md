@@ -28,6 +28,7 @@ service plexmediaserver start
 - Live Stream doesn't work on Plex webinterface
 - Getting redirect urls is a bit slow
 - No selecting of video/audio quality
+- Not in Plex App Store (yet): http://wiki.plexapp.com/index.php/App_Store_Submission
 
 ## Thanks ##
 
