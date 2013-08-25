@@ -1,6 +1,7 @@
 # Plex Channel for Jupiter Broadcasting
 
-![Screenshot of iPad shows view](Resources/Screenshots/iPad-shows.jpg?raw=true)
+![Screenshot of iPad: shows view](Resources/Screenshots/iPad-shows.jpg?raw=true)
+![Screenshot of web interface: episodes view](Resources/Screenshots/Web-episodes.jpg?raw=true)
 
 - http://dev.plexapp.com/docs/channels/index.html
 - https://github.com/RobLoach/plugin.video.jupiterbroadcasting
