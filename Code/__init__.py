@@ -8,6 +8,7 @@ from StringIO import StringIO
 from time import mktime
 from datetime import datetime
 import urllib2
+import socket
 
 TITLE            = 'Jupiter Broadcasting'
 JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
@@ -43,11 +44,20 @@ def MainMenu():
     oc = ObjectContainer()
 
     # Add live stream
+    title = 'The Jupiter Broadcasting Live Stream'
+    oc.add(createEpisodeObject(
+        url='http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8?wowzasessionid=1946303065',
+        title=title,
+        summary=title,
+        thumb=R('jupiterbroadcasting.jpg'),
+        rating_key=title))
+
+    # Add recent episodes
     oc.add(DirectoryObject(
         key=Callback(ArchiveMenu),
-        title='Live Stream',
+        title='Recent Episodes',
         thumb=R('jupiterbroadcasting.jpg'),
-        summary='The JBLive stream'))
+        summary='Recent episoded from all shows'))
 
     # Add shows
     for show in activeShows():
@@ -101,7 +111,11 @@ def ShowMenu(show_name):
             duration = None
         try:
             url = getFinalUrl(entry.enclosures[0]['href'])
-        except HTTPError:
+        except urllib2.HTTPError as e:
+            Log.Warning("Problem with %s: %s" % (url, e.reason))
+            continue
+        except socket.timeout as e:
+            Log.Warning("%s took to long to complete" % url)
             continue
 
         Log.Debug("url: %s" % url)
@@ -111,9 +125,9 @@ def ShowMenu(show_name):
             title=title,
             summary=summary,
             thumb=thumb,
+            rating_key=title,
             originally_available_at=date,
             duration=duration,
-            rating_key=title,
             show_name=show_name))
 
     return oc
@@ -137,6 +151,23 @@ def resetShowsCache():
     if Data.Exists('shows'):
         Data.Remove('shows')
 
+# def getFinalUrl(url):
+#     if Data.Exists('redirects'):
+#         redirects = Data.LoadObject('redirects')
+#     else:
+#         redirects = {}
+
+#     if url not in redirects:
+#         Log.Debug("Checking redirects for %s" % url)
+#         req = urllib2.Request(url)
+#         req.get_method = lambda: 'HEAD'
+#         res = urllib2.urlopen(req, timeout=3.0)
+#         final_url = res.geturl()
+#         redirects = {url: final_url}
+#         Data.SaveObject('redirects', redirects)
+
+#     return redirects[url]
+
 def getFinalUrl(url):
     redirects = Dict['redirects']
     if not redirects:
@@ -150,6 +181,7 @@ def getFinalUrl(url):
         final_url = res.geturl()
         redirects = {url: final_url}
         Dict['redirects'] = redirects
+        Dict.Save()
 
     return redirects[url]
 
@@ -192,7 +224,7 @@ def getShowEpisodes(show):
 
     # return rss
 
-def createEpisodeObject(url, title, summary, thumb, originally_available_at, duration, rating_key, show_name, include_container=False):
+def createEpisodeObject(url, title, summary, thumb, rating_key, originally_available_at=None, duration=None, show_name=None, include_container=False):
     container = Container.MP4
     video_codec = VideoCodec.H264
     audio_codec = AudioCodec.AAC
@@ -205,9 +237,9 @@ def createEpisodeObject(url, title, summary, thumb, originally_available_at, dur
             title=title,
             summary=summary,
             thumb=thumb,
+            rating_key=rating_key,
             originally_available_at=originally_available_at,
             duration=duration,
-            rating_key=rating_key,
             show_name=show_name,
             include_container=True
         ),
