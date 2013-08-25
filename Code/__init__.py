@@ -259,7 +259,7 @@ def createEpisodeObject(url, title, summary, thumb, rating_key, originally_avail
             show_name=show_name,
             include_container=True
         ),
-        rating_key = url,
+        rating_key = rating_key,
         title = title,
         summary = summary,
         # thumb = thumb,
