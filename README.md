@@ -1,30 +1,33 @@
 # Plex Channel for Jupiter Broadcasting
 
+You can view all of the running and discontinued shows of [Jupiter Broadcasting](http://www.jupiterbroadcasting.com) with this channel and view the JB live stream.
+
+## Screenshots
+
+Screenshot of iPad:
+
 ![Screenshot of iPad: shows view](Resources/Screenshots/iPad-shows.jpg?raw=true)
+
+Screenshot of web interface:
+
 ![Screenshot of web interface: episodes view](Resources/Screenshots/Web-episodes.jpg?raw=true)
 
-- http://dev.plexapp.com/docs/channels/index.html
-- https://github.com/RobLoach/plugin.video.jupiterbroadcasting
-
-## Installing the development version from source
+## Installing the development version from source on Ubuntu
 
 ```
 mkdir /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
-mkdir /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/Contents
-chown plex:plex /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
-chmod 755 /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
-bindfs --owner=plex --group=plex --perms=755 /home/leon/Workspaces/prive/com.plexapp.plugins.jupiterbroadcasting /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/Contents/
-```
-## Removing ##
-
-```
-umount /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/Contents/
-killall bindfs
-rm -rf /var/lib/plexmediaserver/
-rm /var/log/upstart/plexmediaserver.log
+git clone https://github.com/LeonB/com.plexapp.plugins.jupiterbroadcasting.git /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/Contents
+chown -R plex:plex /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
+chmod -R 755 /var/lib/plexmediaserver/Library/Application\ Support/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
 ```
 
 ## Problems ##
 
 - Live Stream doesn't work on Plex webinterface
 - Getting redirect urls is a bit slow
+- No selecting of video/audio quality
+
+## Thanks ##
+
+- Rob Loach for the [XBMC Jupiter Broadcasting plugin](https://github.com/RobLoach/plugin.video.jupiterbroadcasting)
+- Chris Fisher for the awesome Jupiter Broadcasting network
