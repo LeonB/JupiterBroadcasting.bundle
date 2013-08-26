@@ -16,7 +16,7 @@ Screenshot of PleXBMC:
 
 ![Screenshot of Plex on XBMC: archive view](Resources/Screenshots/PleXBMC-archive.jpg?raw=true)
 
-## Installing the development version from source on Ubuntu
+## Installing the development version on Ubuntu
 
 ``` shell
 service plexmediaserver stop
