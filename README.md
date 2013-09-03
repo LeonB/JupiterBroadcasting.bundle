@@ -6,15 +6,15 @@ You can view all of the running and discontinued shows of [Jupiter Broadcasting]
 
 Screenshot of iPad:
 
-![Screenshot of iPad: shows view](Resources/Screenshots/iPad-shows.jpg?raw=true)
+![Screenshot of iPad: shows view](Contents/Resources/Screenshots/iPad-shows.jpg?raw=true)
 
 Screenshot of web interface:
 
-![Screenshot of web interface: episodes view](Resources/Screenshots/Web-episodes.jpg?raw=true)
+![Screenshot of web interface: episodes view](Contents/Resources/Screenshots/Web-episodes.jpg?raw=true)
 
 Screenshot of PleXBMC:
 
-![Screenshot of Plex on XBMC: archive view](Resources/Screenshots/PleXBMC-archive.jpg?raw=true)
+![Screenshot of Plex on XBMC: archive view](Contents/Resources/Screenshots/PleXBMC-archive.jpg?raw=true)
 
 ## Installing the development version on Ubuntu
 
