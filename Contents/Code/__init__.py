@@ -2,22 +2,28 @@ import json
 from StringIO import StringIO
 from time import mktime
 from datetime import datetime
-import urllib2
+import urllib2 #need for HEAD requests
 import socket
 
-TITLE            = 'Jupiter Broadcasting'
-JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
-JB_ICON          = 'icon-default.png'
-JB_ART           = 'art-default.jpg'
-LIVE_STREAM_URL  = 'http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8'
-
-RE_PODTRAC_URL   = '^http://www.podtrac.com/pts/redirect.mp4/(.*)$'
+ARCHIVE_SUMMARY   = 'Archived / discontinued shows'
+ARCHIVE_THUMB     = 'jupiterbroadcasting.jpg'
+ARCHIVE_TITLE     = 'Archived Shows'
+JB_ART            = 'art-default.jpg'
+JB_FEED_URL       = 'http://vimcasts.org/episodes.json'
+JB_ICON           = 'icon-default.png'
+JB_PRODUCER       = 'Jupiter Broadcasting'
+LIVE_STREAM_THUMB = 'jupiterbroadcasting.jpg'
+LIVE_STREAM_TITLE = 'The Jupiter Broadcasting Live Stream'
+LIVE_STREAM_URL   = 'http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8'
+RE_PODTRAC_URL    = '^http://www.podtrac.com/pts/redirect.mp4/(.*)$'
+TITLE             = 'Jupiter Broadcasting'
+USER_AGENT        = 'Plex Jupiter Broadcasting Channel'
 
 ###############################################################################
 def Start():
     resetShowsCache()
     resetArchivedShowsCache()
-    # Plugin.AddPrefixHandler("/video/jupiterbroadcasting", MainMenu, L('jupiterbroadcasting'), JB_ICON, JB_ART)
+    Plugin.AddPrefixHandler("/video/jupiterbroadcasting", MainMenu, L('jupiterbroadcasting'), JB_ICON, JB_ART)
     Plugin.AddViewGroup('List', viewMode='List', mediaType='items')
     Plugin.AddViewGroup('InfoList', viewMode='InfoList', mediaType='items')
 
@@ -27,11 +33,9 @@ def Start():
     ObjectContainer.art = R(JB_ART)
     DirectoryObject.thumb = R(JB_ICON)
     DirectoryObject.art = R(JB_ART)
-    # VideoClipObject.thumb = R(JB_ICON)
-    # VideoClipObject.art = R(JB_ART)
 
     HTTP.CacheTime = CACHE_1HOUR
-    HTTP.Headers['User-Agent'] = 'Plex Jupiter Broadcasting Channel'
+    HTTP.Headers['User-Agent'] = USER_AGENT
 
 ####################################################################################################
 # Menus
@@ -41,12 +45,12 @@ def MainMenu():
     oc = ObjectContainer()
 
     # Add live stream
-    title = 'The Jupiter Broadcasting Live Stream'
+    title = LIVE_STREAM_TITLE
     oc.add(createEpisodeObject(
         url=LIVE_STREAM_URL,
         title=title,
         summary=title,
-        thumb=R('jupiterbroadcasting.jpg'),
+        thumb=R(LIVE_STREAM_THUMB),
         rating_key=title))
 
     # Add shows
@@ -61,9 +65,9 @@ def MainMenu():
     # Add archive
     oc.add(DirectoryObject(
         key=Callback(ArchiveMenu),
-        title='Archived Shows',
-        thumb=R('jupiterbroadcasting.jpg'),
-        summary='Archived / discontinued shows'))
+        title=ARCHIVE_TITLE,
+        thumb=R(ARCHIVE_THUMB),
+        summary=ARCHIVE_SUMMARY))
 
     return oc
 
@@ -157,23 +161,6 @@ def resetShowsCache():
     if Data.Exists('shows'):
         Data.Remove('shows')
 
-# def getFinalUrl(url):
-#     if Data.Exists('redirects'):
-#         redirects = Data.LoadObject('redirects')
-#     else:
-#         redirects = {}
-
-#     if url not in redirects:
-#         Log.Debug("Checking redirects for %s" % url)
-#         req = urllib2.Request(url)
-#         req.get_method = lambda: 'HEAD'
-#         res = urllib2.urlopen(req, timeout=3.0)
-#         final_url = res.geturl()
-#         redirects = {url: final_url}
-#         Data.SaveObject('redirects', redirects)
-
-#     return redirects[url]
-
 def getFinalUrl(url):
     redirects = Dict['redirects']
     if not redirects:
@@ -228,13 +215,6 @@ def getShow(show_name):
 def getShowEpisodes(show):
     # http://pythonhosted.org/feedparser/
     return RSS.FeedFromURL(show['feed'])
-    # if not Data.Exists('rss'):
-    #     rss = RSS.FeedFromURL(show['feed'])
-    #     Data.SaveObject('rss', rss)
-    # else:
-    #     rss = Data.LoadObject('rss')
-
-    # return rss
 
 def createEpisodeObject(url, title, summary, thumb, rating_key, originally_available_at=None, duration=None, show_name=None, include_container=False):
     container = Container.MP4
@@ -262,7 +242,7 @@ def createEpisodeObject(url, title, summary, thumb, rating_key, originally_avail
         thumb=thumb,
         originally_available_at = originally_available_at,
         duration = duration,
-        producers = ['Jupiter Broadcasting'],
+        producers = [],
         show = show_name,
         items = [
             MediaObject(
