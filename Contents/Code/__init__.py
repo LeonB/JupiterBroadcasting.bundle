@@ -1,7 +1,5 @@
 import json
 from StringIO import StringIO
-from time import mktime
-from datetime import datetime
 import urllib2 #need for HEAD requests
 import socket
 
@@ -107,7 +105,7 @@ def ShowMenu(show_name, limit=None, offset=0):
         title = entry.title
         summary = entry.subtitle if entry.has_key('subtitle') else None
         thumb = entry.media_thumbnail[0]['url'] if entry.has_key('media_thumbnail') else R(show['image'])
-        date = datetime.fromtimestamp(mktime(entry.updated_parsed))
+        date = Datetime.ParseDate(entry.updated)
         if entry.has_key('itunes_duration'):
             duration = Datetime.MillisecondsFromString(entry.itunes_duration)
         else:
