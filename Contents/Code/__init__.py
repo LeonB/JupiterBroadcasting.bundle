@@ -1,21 +1,17 @@
-# import htmlentitydefs
-# import re
-# from datetime import datetime
-# from email.utils import parsedate
-
 import json
 from StringIO import StringIO
 from time import mktime
 from datetime import datetime
 import urllib2
 import socket
-import re
 
 TITLE            = 'Jupiter Broadcasting'
 JB_FEED_URL      = 'http://vimcasts.org/episodes.json'
 JB_ICON          = 'icon-default.png'
 JB_ART           = 'art-default.jpg'
 LIVE_STREAM_URL  = 'http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8'
+
+RE_PODTRAC_URL   = '^http://www.podtrac.com/pts/redirect.mp4/(.*)$'
 
 ###############################################################################
 def Start():
@@ -186,7 +182,7 @@ def getFinalUrl(url):
     if url not in redirects:
         Log.Debug("Checking redirects for %s" % url)
 
-        m = re.match('^http://www.podtrac.com/pts/redirect.mp4/(.*)$', url)
+        m = RE_PODTRAC_URL.match(url)
         if m:
             final_url = "http://%s" % m.group(1)
         else:
