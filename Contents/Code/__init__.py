@@ -15,7 +15,7 @@ JB_PRODUCER       = 'Jupiter Broadcasting'
 LIVE_STREAM_THUMB = 'jupiterbroadcasting.jpg'
 LIVE_STREAM_TITLE = 'The Jupiter Broadcasting Live Stream'
 LIVE_STREAM_URL   = 'http://videocdn-us.geocdn.scaleengine.net/jblive-iphone/live/jblive.stream/playlist.m3u8'
-RE_PODTRAC_URL    = '^http://www.podtrac.com/pts/redirect.mp4/(.*)$'
+RE_PODTRAC_URL    = Regex('^http://www.podtrac.com/pts/redirect.mp4/(.*)$')
 TITLE             = 'Jupiter Broadcasting'
 USER_AGENT        = 'Plex Jupiter Broadcasting Channel'
 
@@ -169,7 +169,7 @@ def getFinalUrl(url):
     if url not in redirects:
         Log.Debug("Checking redirects for %s" % url)
 
-        m = RE_PODTRAC_URL.match(url)
+        m = RE_PODTRAC_URL.search(url)
         if m:
             final_url = "http://%s" % m.group(1)
         else:
