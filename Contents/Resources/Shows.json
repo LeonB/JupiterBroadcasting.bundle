@@ -11,6 +11,17 @@
         "pagination": false
     },
     {
+        "name": "BSD Now",
+        "feed": "http://feeds.feedburner.com/BsdNowHd?format=xml",
+        "feed-low": "http://feeds.feedburner.com/BsdNowMobile?format=xml",
+        "feed-audio": "http://feeds.feedburner.com/BsdNowOgg?format=xml",
+        "image": "bsdnow.jpg",
+        "plot": "All things BSD",
+        "genre": "Technology",
+        "limit": 25,
+        "pagination": true
+    },
+    {
         "name": "Coder Radio",
         "feed": "http://feeds.feedburner.com/coderradiovideo?format=xml",
         "feed-low": "http://www.jupiterbroadcasting.com/feeds/coderradioogg.xml?format=xml",
