@@ -31,11 +31,11 @@ service plexmediaserver start
 
 ``` shell
 service plexmediaserver stop
-mkdir /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/
-git clone https://github.com/LeonB/com.plexapp.plugins.jupiterbroadcasting.git /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle
-chown -R _plex:_plex /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/
-find /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/ -type f -exec chmod 644 {} +
-find /var/lib/plexdata/Plex\ Media\ Server/Plug-ins/JupiterBroadcasting.bundle/ -type d -exec chmod 755 {} +
+mkdir /usr/local/plexdata/Plex Media Server/Plug-ins/JupiterBroadcasting.bundle/
+git clone https://github.com/LeonB/com.plexapp.plugins.jupiterbroadcasting.git /usr/local/plexdata/Plex Media Server/Plug-ins/JupiterBroadcasting.bundle
+chown -R _plex:_plex /usr/local/plexdata/Plex Media Server/Plug-ins/JupiterBroadcasting.bundle/
+find /usr/local/plexdata/Plex Media Server/Plug-ins/JupiterBroadcasting.bundle/ -type f -exec chmod 644 {} +
+find /usr/local/plexdata/Plex Media Server/Plug-ins/JupiterBroadcasting.bundle/ -type d -exec chmod 755 {} +
 service plexmediaserver start
 ```
 
