@@ -1,4 +1,3 @@
-import json
 from StringIO import StringIO
 import urllib2 #need for HEAD requests
 import socket
@@ -7,7 +6,6 @@ ARCHIVE_SUMMARY   = 'Archived / discontinued shows'
 ARCHIVE_THUMB     = 'jupiterbroadcasting.jpg'
 ARCHIVE_TITLE     = 'Archived Shows'
 JB_ART            = 'art-default.jpg'
-JB_FEED_URL       = 'http://vimcasts.org/episodes.json'
 JB_ICON           = 'icon-default.png'
 JB_PRODUCER       = 'Jupiter Broadcasting'
 LIVE_STREAM_THUMB = 'jupiterbroadcasting.jpg'
@@ -146,8 +144,7 @@ def getActiveShows():
     if not Data.Exists('shows'):
         Log.Debug('Loading shows from disk')
         data = Resource.Load('Shows.json', binary=False)
-        io = StringIO(data)
-        shows = json.load(io)
+        shows = JSON.ObjectFromString(data)
         Data.SaveObject('shows', shows)
     else:
         Log.Debug('Loading shows from cache')
@@ -186,8 +183,7 @@ def getArchivedShows():
     if not Data.Exists('archived_shows'):
         Log.Debug('Loading archived shows from disk')
         data = Resource.Load('ArchivedShows.json', binary=False)
-        io = StringIO(data)
-        archived_shows = json.load(io)
+        archived_shows = JSON.ObjectFromString(data)
         Data.SaveObject('archived_shows', archived_shows)
     else:
         Log.Debug('Loading archived shows from cache')
