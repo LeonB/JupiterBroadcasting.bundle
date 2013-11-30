@@ -1,7 +1,3 @@
-from StringIO import StringIO
-import urllib2 #need for HEAD requests
-import socket
-
 ARCHIVE_SUMMARY   = 'Archived / discontinued shows'
 ARCHIVE_THUMB     = 'jupiterbroadcasting.jpg'
 ARCHIVE_TITLE     = 'Archived Shows'
