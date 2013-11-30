@@ -16,8 +16,8 @@ USER_AGENT        = 'Plex Jupiter Broadcasting Channel'
 
 ###############################################################################
 def Start():
-    resetShowsCache()
-    resetArchivedShowsCache()
+    # resetShowsCache() # only when debuggin
+    # resetArchivedShowsCache() # only when debuggin
     Plugin.AddPrefixHandler("/video/jupiterbroadcasting", MainMenu, L('jupiterbroadcasting'), JB_ICON, JB_ART)
     Plugin.AddViewGroup('List', viewMode='List', mediaType='items')
     Plugin.AddViewGroup('InfoList', viewMode='InfoList', mediaType='items')
