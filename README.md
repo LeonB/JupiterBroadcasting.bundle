@@ -42,11 +42,10 @@ service plexmediaserver start
 ## Problems ##
 
 - Live Stream doesn't work on Plex webinterface
-- Getting redirect urls is a bit slow
 - No selecting of video/audio quality
-- Not in Plex App Store (yet): http://wiki.plexapp.com/index.php/App_Store_Submission
 
 ## Thanks ##
 
 - Rob Loach for the [XBMC Jupiter Broadcasting plugin](https://github.com/RobLoach/plugin.video.jupiterbroadcasting)
 - Chris Fisher for the awesome Jupiter Broadcasting network
+- Sander Spies for getting this channel in the Plexapp store
