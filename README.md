@@ -49,3 +49,8 @@ service plexmediaserver start
 - Rob Loach for the [XBMC Jupiter Broadcasting plugin](https://github.com/RobLoach/plugin.video.jupiterbroadcasting)
 - Chris Fisher for the awesome Jupiter Broadcasting network
 - Sander Spies for getting this channel in the Plexapp store
+
+## License
+
+This project is licensed under the same license as Plex, the GPLv2. See the
+`LICENSE` for license rights and limitations
