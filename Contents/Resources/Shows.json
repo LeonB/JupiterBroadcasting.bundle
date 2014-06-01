@@ -4,7 +4,7 @@
         "feed": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
         "feed-low": "http://feeds2.feedburner.com/AllJupiterVideos?format=xml",
         "feed-audio": "http://feeds2.feedburner.com/AllJupiterBroadcastingShowsOgg?format=xml",
-        "image": "jupiterbroadcasting.jpg",
+        "image": "recentepisodes.jpg",
         "plot": "The Linux Action Show covers the latest news in free and open source software, especially Linux.",
         "genre": "Technology",
         "limit": 25,
